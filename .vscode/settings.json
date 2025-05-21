@@ -57,5 +57,13 @@
     "variant": "cpp",
     "vector": "cpp",
     "algorithm": "cpp"
-  }
+  },
+  "clangd.arguments": [
+    "--log=verbose",
+    "--header-insertion=never",
+    "--query-driver=/usr/local/gcc-14.1.0/bin/g++-14.1.0*",
+  ],
+  "clangd.fallbackFlags": [
+    "-std=c++20"
+  ]
 }
