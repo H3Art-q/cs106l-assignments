@@ -57,5 +57,8 @@
     "variant": "cpp",
     "vector": "cpp",
     "algorithm": "cpp"
-  }
+  },
+  "clangd.fallbackFlags": [
+    "-std=c++20"
+  ]
 }
