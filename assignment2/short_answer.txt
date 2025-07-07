@@ -5,7 +5,25 @@ Marriage Pact
 -------------
 
 Q1. It is your choice to use either an ordered or unordered set. In a few sentences, what are some of the tradeoffs between the two? Additionally, please give an example (that has not been shown in lecture) of a valid hash function that could be used to hash student names for an unordered set.
-A1. TODO
+A1. Ordered sets (std::set) store elements in sorted order (typically using a balanced binary search tree like a red-black tree) and allow efficient ordered traversal and range queries (e.g., finding all elements between two values). However, their insertion, deletion, and lookup operations have a time complexity of O(log n) due to tree traversal.
+
+Unordered sets (std::unordered_set) use a hash table, which provides average O(1) time complexity for insertion, deletion, and lookup—faster for frequent single-element operations. But they do not maintain order, making ordered traversal or range queries inefficient (O(n) time). Additionally, unordered sets require a valid hash function for the element type, and poor hash functions can lead to collisions, degrading performance to O(n) in the worst case.
+
+An example hash function for student names could combine the ASCII values of each character, weighted by their position:
+
+```cpp
+size_t hash_name(const std::string& name) {
+    size_t hash = 0;
+    for (size_t i = 0; i < name.size(); ++i) {
+        hash = hash * 31 + static_cast<size_t>(name[i]); // 31 is a prime to reduce collisions
+    }
+    return hash;
+}
+```
+
+This weights later characters more heavily, reducing collisions between names with the same characters in different orders (e.g., "Alice Smith" vs. "Smith Alice").
 
 Q2. Note that we are saving pointers to names in the queue, not names themselves. Why might this be desired in this problem? What happens if the original set where the names are stored goes out of scope and the pointers are referenced?
-A2. TODO
+A2. Storing pointers to names in the queue (instead of copying the names) is efficient because it avoids duplicating potentially large string data, saving memory and reducing overhead—especially useful when dealing with many applicants. It also ensures that if the original names in the set are modified (though unlikely here), the queue’s pointers automatically reflect the updates.
+
+If the original set goes out of scope, the names it contains are destroyed, leaving the queue with dangling pointers. Dereferencing these pointers would result in undefined behavior (e.g., garbage values, program crashes, or data corruption), as the memory they point to is no longer valid.

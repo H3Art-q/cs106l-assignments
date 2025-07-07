@@ -5,7 +5,8 @@ Make a Class
 ------------
 
 Q1. What’s const-correctness and why is it important?
-A1. TODO
+A1. Const-correctness is a programming practice in C++ that uses the const keyword to enforce that certain values or objects cannot be modified. This includes marking variables as unchangeable, member functions as non-modifying (via const at the end of the function signature), and pointers/references as pointing to immutable data. It is important because it prevents accidental modification of data, makes the code’s intent clearer (e.g., a const member function explicitly states it won’t alter the object’s state), and enables the compiler to catch errors at compile time, improving code reliability and maintainability.
+
 
 Q2. Is your class const-correct? How do you know?
-A2. TODO
+A2. Yes, my class is const-correct. For example, the public getter function for a private member field is marked const (e.g., int getValue() const;), ensuring it cannot modify the object’s state. Additionally, any member functions that don’t need to alter private fields are declared const, and variables that shouldn’t be modified (like initialization parameters in constructors) are marked const. The compiler confirms this—if a const function accidentally tried to modify a member variable, it would throw a compile error, which I’ve verified by checking for such errors during compilation.
