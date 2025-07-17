@@ -8,9 +8,9 @@
             "type": "lldb",
             "request": "launch",
             "name": "Debug",
-            "program": "${workspaceFolder}/assignment4/${fileBasenameNoExtension}",
+            "program": "${fileDirnameBasename}/${fileBasenameNoExtension}",
             "args": [],
-            "cwd": "${workspaceFolder}/assignment4"
+            "cwd": "${fileDirnameBasename}"
         }
     ]
 }
